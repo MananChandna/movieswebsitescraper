@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Office Scraper</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .contact-btn {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .popup p {
+            margin-bottom: 15px;
+        }
+
+        .popup img {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .popup button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #successPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Box Office Scraper</h1>
+    </header>
+
+    <main>
+        <form action="/scrape" method="POST">
+            <label for="start_year">Start Year:</label>
+            <input type="text" name="start_year" required>
+            <label for="years_ago">Years Ago:</label>
+            <input type="text" name="years_ago" required>
+            <button type="submit">Scrape Data</button>
+        </form>
+
+        <div id="loading">
+            <div class="loader"></div>
+            <p>Loading...</p>
+        </div>
+
+        <div id="successPopup">
+            <p>Scraping Completed Successfully!</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Box Office Scraper | Created by Manan</p>
+        <button class="contact-btn" onclick="showPopup()">Contact Creator</button>
+    </footer>
+
+    <div id="contactPopup" class="popup">
+        <p>Contact Manan:</p>
+        <a href="https://github.com/MananChandna" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"></a>
+        <a href="https://www.linkedin.com/in/manan-chandna-697588257/" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/018/930/587/non_2x/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="LinkedIn"></a>
+        <button onclick="hidePopup()">Close</button>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function () {
+            document.getElementById('loading').style.display = 'block';
+            // Simulating successful completion after 2 seconds
+            setTimeout(function () {
+                document.getElementById('loading').style.display = 'none';
+                showSuccessPopup();
+            }, 11000);
+        });
+
+        function showPopup() {
+            document.getElementById('contactPopup').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('contactPopup').style.display = 'none';
+        }
+
+        function showSuccessPopup() {
+            var successPopup = document.getElementById('successPopup');
+            successPopup.style.display = 'block';
+            setTimeout(function () {
+                successPopup.style.display = 'none';
+            }, 10000); // Hide the popup after 3 seconds
+        }
+    </script>
+</body>
+
+</html>
