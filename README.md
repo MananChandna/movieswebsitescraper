@@ -19,4 +19,5 @@ This function orchestrates the scraping process. It takes two optional arguments
 ## Main Block:
 In the main block, it reads command-line arguments to determine the starting year and how many years to go back. Then, it calls the `run` function with these arguments.
 
-
+<h2>Contact</h2>
+    <p>If you have any questions or suggestions regarding this project, feel free to contact me via <a href="https://www.linkedin.com/in/manan-chandna-697588257/">LinkedIn</a>.</p>
